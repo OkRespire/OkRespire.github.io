@@ -89,30 +89,6 @@ document.addEventListener("DOMContentLoaded", function () {
         container.appendChild(card);
       }
 
-      // Optional: Add "Show More" button if there are more data points
-      if (times.length > maxHours) {
-        const showMoreButton = document.getElementById("showMoreButton");
-        showMoreButton.style.display = "none"; // Hide by default
-
-        if (times.length > maxHours) {
-          showMoreButton.style.display = "block";
-          showMoreButton.onclick = function () {
-            for (let i = maxHours; i < times.length; i++) {
-              const card = document.createElement("div");
-              card.className = "card p-2 mb-2";
-              card.style.minWidth = "200px";
-              card.style.flex = "0 0 auto";
-              card.innerHTML = `
-                <strong>${times[i]}</strong><br/>
-                Temp: ${temps[i]}°C<br/>
-                Humidity: ${humidities[i]}%
-              `;
-              container.appendChild(card);
-            }
-            showMoreButton.style.display = "none";
-          };
-        }
-      }
     } catch (error) {
       console.error("Error: ", error);
     }
