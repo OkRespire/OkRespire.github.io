@@ -14,31 +14,59 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container">
         <a class="navbar-brand" href="index.html">
-          <img src="img/logo.png" alt="Site Logo" width="100" />
+          <img src="img/logo.png" alt="site logo" width="100" />
         </a>
-    
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-          aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarnavdropdown"
+          aria-controls="navbarnavdropdown"
+          aria-expanded="false"
+          aria-label="toggle navigation"
+        >
           <span class="navbar-toggler-icon"></span>
         </button>
-    
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+
+        <div class="collapse navbar-collapse" id="navbarnavdropdown">
           <ul class="navbar-nav ms-auto">
-    
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                data-bs-toggle="dropdown" aria-expanded="false">
-                My Profile
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbardropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                 My Profile
               </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li class="non-invisible-container"><a class="dropdown-item" href="/register.html">Register</a></li>
-                <li class="non-invisible-container"><a class="dropdown-item" href="/login.html">Login</a></li>
-                  <li class="invisible-container"><a class="dropdown-item" href="/profile.html">Profile</a></li>
-                  <li class="invisible-container"><a class="dropdown-item" href="#">Sign out</a></li>
-                </ul>
+              <ul class="dropdown-menu" aria-labelledby="navbardropdown">
+                <li class="non-invisible-container">
+                  <a class="dropdown-item" href="/register.html">Register</a>
+                </li>
+                <li class="non-invisible-container">
+                  <a class="dropdown-item" href="/login.html">Login</a>
+                </li>
+                <li class="invisible-container">
+                  <a class="dropdown-item" href="/profile.html">Profile</a>
+                </li>
+                <li class="invisible-container">
+                  <a class="dropdown-item" href="" onclick="signout()"
+                    >Sign out</a
+                  >
+                </li>
+              </ul>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="unique-feature.html">Unique Feature</a>
+              <a class="nav-link" href="food.html">Food</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="natural_beauty.html">Natural beauty</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="weather.html">Weather</a>
             </li>
           </ul>
         </div>
