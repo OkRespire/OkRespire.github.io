@@ -1,11 +1,23 @@
+.calendar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.calendar-box {
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+}
 .invisible-container .non-invisible-container {
-    display:none;
+  display: none;
 }
 
 .card-img-top {
   height: 400px;
   object-fit: cover;
-  width:100%;
+  width: 100%;
   display: block;
 }
 
@@ -22,7 +34,6 @@
   margin-top: auto;
 }
 
-
 #hourlyContainer {
   display: flex;
   flex-direction: row;
@@ -35,7 +46,6 @@
   flex: 0 0 auto;
   min-width: 200px;
 }
-
 
 .card {
   word-wrap: break-word;

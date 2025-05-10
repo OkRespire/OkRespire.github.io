@@ -9,7 +9,7 @@
     />
     <link rel="stylesheet" href="css/style.css" />
   </head>
-  <body>
+  <body class="bg-light text-dark">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container">
         <a class="navbar-brand" href="index.html">
@@ -71,42 +71,27 @@
         </div>
       </div>
     </nav>
+    <div class="container text-black">
+      <div class="row justify-content-center">
+        <h1 class="text-center">Weather info for the week</h1>
+      </div>
 
-    <div
-      class="position-relative text-white"
-      style="
-        height: 100vh;
-        background-image: url('img/background_index.jpg');
-        background-size: cover;
-        background-position: center;
-      "
-    >
-      <img
-        src="img/background_index.jpg"
-        alt="Coastal view of Plymouth"
-        class="visually-hidden"
-      />
+        <div class="calendar-container">
+          <div class="calendar-box">
+            <h5>Calendar</h5>
+          <input type="date" id="datePicker" class="form-control" />
+        </div>
+      </div>
 
-      <div
-        class="position-absolute top-0 start-0 w-100 h-100"
-        style="background-color: rgba(0, 0, 0, 0.5)"
-      ></div>
 
-      <div
-        class="position-relative d-flex align-items-center justify-content-center h-100"
-        style="padding-top: 100px;"
-      >
-        <div class="container">
+      <!-- <div class="position-relative d-flex justify-content-center align-items-start h-100 pt-5">
+        <div class="container text-black" style="max-width: 900px; margin-top: 60px;">
           <div class="row">
-            <div class="col-md-6">
-              <h5>Weather info for the week</h5>
-              <div id="weekly-weather" class="card p-3"></div>
-            </div>
-            <div class="col-md-4">
-              <h5>Calendar</h5>
-              <input type="date" id="datePicker" class="form-control" />
-            </div>
           </div>
+          <div class="col-md-4" style="padding-top:20px">
+            <h5>Calendar</h5>
+            <input type="date" id="datePicker" class="form-control" />
+          </div> -->
 
           <div class="mt-4" id="daily-summary" style="display: none">
             <h5>Weather info for the day</h5>
@@ -117,15 +102,13 @@
               <div id="sunrise"></div>
               <div id="sunset"></div>
                 <div id="hourlyContainer"></div>
-              <a href="daily_weather.html?date=2025-05-06" class="btn btn-link"
-                >More info</a
-              >
+                <a href="daily_weather.html" class="btn btn-link">More info</a>
+              <button id="showMoreButton" class="btn btn-primary" style="display: none;">Show More</button>
           </div>
         </div>
       </div>
     </div>
 
-    <script src="js/example_data.js"></script>
     <script src="js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   </body>
