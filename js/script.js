@@ -118,7 +118,7 @@ document.addEventListener("DOMContentLoaded", function () {
       container.style.gap = "1rem";
 
       const maxHours = 12;
-      for (let i = 0; i < Math.min(times.length, maxHours); i++) {
+      for (let i = 0; i < 12; i++) {
         const card = document.createElement("div");
         card.className = "card p-2 mb-2";
         card.style.minWidth = "200px";
@@ -138,7 +138,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (times.length > maxHours) {
         showMoreButton.style.display = "inline-block";
         showMoreButton.onclick = function () {
-          for (let i = maxHours; i < times.length; i++) {
+          for (let i = maxHours; i < 24; i++) {
             const card = document.createElement("div");
             card.className = "card p-2 mb-2";
             card.style.minWidth = "200px";
