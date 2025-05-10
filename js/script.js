@@ -147,7 +147,7 @@ document.addEventListener("DOMContentLoaded", function () {
           <strong>${times[i].split("T")[1]}</strong><br/>
           Temp: ${temps[i]}°C<br/>
           Humidity: ${humidities[i]}%
-          Weather: ${desc}
+          Weather: ${getWeatherDescription(weather)}
         `;
             container.appendChild(card);
           }
