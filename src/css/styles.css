@@ -1,0 +1,43 @@
+.invisible-container .non-invisible-container {
+    display:none;
+}
+
+.card-img-top {
+  height: 400px;
+  object-fit: cover;
+  width:100%;
+  display: block;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-text {
+  flex-grow: 1;
+}
+
+.btn {
+  margin-top: auto;
+}
+
+
+#hourlyContainer {
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  gap: 1rem;
+  padding: 0.5rem;
+}
+
+#hourlyContainer .card {
+  flex: 0 0 auto;
+  min-width: 200px;
+}
+
+
+.card {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
