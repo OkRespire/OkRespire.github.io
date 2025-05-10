@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
   if (!window.location.pathname.endsWith("weather.html")) return;
   const picker = document.getElementById("datePicker");
   const api_url =
-  "https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&daily=temperature_2m_max,temperature_2m_min,sunrise,uv_index_max,sunset,weather_code&hourly=temperature_2m,relative_humidity_2m,weather_code&current=temperature_2m,relative_humidity_2m&timezone=auto";
+    "https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&daily=temperature_2m_max,temperature_2m_min,sunrise,uv_index_max,sunset,weather_code&hourly=temperature_2m,relative_humidity_2m,weather_code&current=temperature_2m,relative_humidity_2m&timezone=auto";
 
   if (!picker) return;
   picker.addEventListener("change", async function () {
@@ -86,21 +86,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
       document.getElementById(
         "summary"
-      ).innerText = `Condition: ${weatherDesc}\nHigh: ${data.daily.temperature_2m_max[idx]}°C, Low: ${data.daily.temperature_2m_min[idx]}°C`;
+      ).innerHTML = `<strong>Condition:</strong> ${weatherDesc}<br><strong>High:</strong> ${data.daily.temperature_2m_max[idx]}°C, <strong>Low:</strong> ${data.daily.temperature_2m_min[idx]}°C`;
 
       document.getElementById(
         "uv"
-      ).innerText = `UV Index: ${data.daily.uv_index_max[idx]}`;
+      ).innerHTML = `<strong>UV Index:</strong> ${data.daily.uv_index_max[idx]}`;
+
       document.getElementById(
         "humidity"
-      ).innerText = `Humidity: ${data.hourly.relative_humidity_2m[idx]}`;
-      document.getElementById("sunrise").innerText = `Sunrise: ${
+      ).innerHTML = `<strong>Humidity:</strong> ${data.hourly.relative_humidity_2m[idx]}%`;
+
+      document.getElementById(
+        "sunrise"
+      ).innerHTML = `<strong>Sunrise:</strong> ${
         data.daily.sunrise[idx].split("T")[1]
       }`;
-      document.getElementById("sunset").innerText = `Sunset: ${
+
+      document.getElementById("sunset").innerHTML = `<strong>Sunset:</strong> ${
         data.daily.sunset[idx].split("T")[1]
       }`;
-
       const times = data.hourly.time;
       const temps = data.hourly.temperature_2m;
       const humidities = data.hourly.relative_humidity_2m;
@@ -123,7 +127,7 @@ document.addEventListener("DOMContentLoaded", function () {
         card.innerHTML = `
             <strong>${times[i].split("T")[1]}</strong><br/>
             Temp: ${temps[i]}°C<br/>
-            Humidity: ${humidities[i]}%
+            Humidity: ${humidities[i]}%<br/>
             ${getWeatherDescription(weather[i])}
           `;
         container.appendChild(card);
@@ -157,7 +161,8 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("DOMContentLoaded", async () => {
-  if (!window.location.pathname.endsWith("weather_details.html")) return;
+  console.log("Hi");
+  if (!window.location.pathname.endsWith("daily_weather.html")) return;
   const params = new URLSearchParams(window.location.search);
   const date = params.get("date");
 
@@ -168,8 +173,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     return;
   }
 
-    const api_url = `https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&daily=temperature_2m_max,temperature_2m_min,sunrise,uv_index_max,sunset,weather_code&hourly=temperature_2m,relative_humidity_2m&timezone=auto&start_date=${date}&end_date=${date}`;
-
+  const api_url =
+    "https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&daily=temperature_2m_max,temperature_2m_min,sunrise,uv_index_max,sunset,weather_code&hourly=temperature_2m,relative_humidity_2m,weather_code&current=temperature_2m,relative_humidity_2m&timezone=auto";
 
   try {
     const response = await fetch(api_url);
@@ -181,8 +186,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         "<p>No weather data available for this date.</p>";
       return;
     }
-    // const weatherCode = data.daily.weather_code[idx];
-    // const weatherDesc = getWeatherDescription(weatherCode);
+    const weatherCode = data.daily.weather_code[idx];
+    const weatherDesc = getWeatherDescription(weatherCode);
 
     detailsDiv.innerHTML = `
     <h4>Weather for ${date}</h4>
@@ -247,7 +252,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                 <h6 class="card-title">${time.split("T")[1]}</h6>
                 <p class="card-text">🌡️${
                   data.hourly.temperature_2m[i]
-                }°C<br/>💧 ${data.hourly.relative_humidity_2m[i]}<br/>%
+                }°C<br/>💧 ${data.hourly.relative_humidity_2m[i]}%<br/>
+                ${getWeatherDescription(data.hourly.weather_code[i])}
                 </p>
               </div>
             </div>
@@ -264,6 +270,4 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 document.addEventListener("DOMContentLoaded", isLoggedIn);
 
-
-
-                // ☁️ ${getWeatherDescription(data.hourly.weather_code[i])}
+// ☁️ ${getWeatherDescription(data.hourly.weather_code[i])}
