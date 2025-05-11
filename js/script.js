@@ -27,6 +27,7 @@ function getWeatherDescription(code) {
 
 function isLoggedIn() {
   const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+  console.log(isLoggedIn);
 
   let container = document.querySelectorAll(".invisible-container");
   let visibleContainer = document.querySelectorAll(".non-invisible-container");
@@ -55,6 +56,7 @@ function checkLogin(event) {
 
 function signout() {
   localStorage.setItem("isLoggedIn", "false");
+  window.location.href = "index.html";
 }
 
 document.addEventListener("DOMContentLoaded", function () {
