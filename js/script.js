@@ -174,8 +174,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   const api_url =
-    "https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&daily=temperature_2m_max,temperature_2m_min,sunrise,uv_index_max,sunset,weather_code&hourly=temperature_2m,relative_humidity_2m,weather_code&current=temperature_2m,relative_humidity_2m&timezone=auto";
-
+    "https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&daily=temperature_2m_max,temperature_2m_min,sunrise,uv_index_max,sunset,weather_code&hourly=temperature_2m,relative_humidity_2m,weather_code,rain,precipitation_probability,wind_speed_10m&current=temperature_2m,relative_humidity_2m&timezone=auto";
   try {
     const response = await fetch(api_url);
     const data = await response.json();
@@ -245,16 +244,28 @@ document.addEventListener("DOMContentLoaded", async () => {
     ${data.hourly.time
       .map((time, i) => {
         if (!time.startsWith(date)) return "";
+        const temp = data.hourly.temperature_2m[i];
+        const wind = data.hourly.wind_speed_10m[i];
+        const humidity = data.hourly.relative_humidity_2m[i];
+        const rain = data.hourly.rain[i];
+        const chance = data.hourly.precipitation_probability[i];
+        const weatherDesc = getWeatherDescription(data.hourly.weather_code[i]);
+        const rainDisplay = rain > 5 ? `🌧️ <strong>Heavy Rain:</strong> ${rain} mm` : `🌦️ <strong>Rain:</strong> ${rain} mm`;
+        const chanceDisplay = chance > 70 ? `⚠️ <strong>Chance:</strong> ${chance}%` : `☔ <strong>Chance:</strong> ${chance}%`;
+
         return `
           <div class="col">
             <div class="card h-100">
               <div class="card-body">
                 <h6 class="card-title">${time.split("T")[1]}</h6>
-                <p class="card-text">🌡️${
-                  data.hourly.temperature_2m[i]
-                }°C<br/>💧 ${data.hourly.relative_humidity_2m[i]}%<br/>
-                ${getWeatherDescription(data.hourly.weather_code[i])}
-                </p>
+                  <p class="card-text">
+                🌡️ <strong>${temp}°C</strong><br/>
+                💨 <strong>${wind} km/h</strong><br/>
+                💧 <strong>Humidity:</strong> ${humidity}%<br/>
+                ${rainDisplay}<br/>
+                ${chanceDisplay}<br/>
+                ${weatherDesc}
+              </p>
               </div>
             </div>
           </div>
@@ -269,5 +280,3 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 document.addEventListener("DOMContentLoaded", isLoggedIn);
-
-// ☁️ ${getWeatherDescription(data.hourly.weather_code[i])}
